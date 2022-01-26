@@ -6,4 +6,11 @@ Utterance-Pair Coherence Scoring](https://aclanthology.org/2021.sigdial-1.18.pdf
 In the paper, we mention two training datasets for Utterance-Pair Coherence Scoring model training. They are:
 * [DailyDialog](http://yanran.li/dailydialog) (for English)
 * [NaturalConv](https://ai.tencent.com/ailab/nlp/dialogue/#datasets) (for Chinese)
+You can access and download these two datasets online!
 
+## 2. Data Generation:
+Once the source of training data is ready, we run *data_process.py* to generate the postive and negative utterance pair samples for the training of BERT-based coherence scoring model. Please note that the code will generate three files:
+* dialogues_text.txt
+* dialogues_topic.txt
+* dialogues_act.txt
+These three files will be required to work together to manage the data loading of model training.
