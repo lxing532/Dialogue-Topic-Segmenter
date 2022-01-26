@@ -13,4 +13,10 @@ Once the source of training data is ready, we run *data_process.py* to generate 
 * dialogues_text.txt
 * dialogues_topic.txt
 * dialogues_act.txt
+
 These three files will be required to work together to manage the data loading of model training.
+
+## 3. Coherence Scoring Model Training:
+Please modify the paths in the *model.py* file to the paths you save your data files in. This code will save the utterance-pair coherence scoring model, which will be further utilized in *test.py* for topic segmentation inference.
+
+## 4. Topic Segmentation Inference:
