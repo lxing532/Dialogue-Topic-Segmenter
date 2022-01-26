@@ -20,3 +20,7 @@ These three files will be required to work together to manage the data loading o
 Please modify the paths in the *model.py* file to the paths you save your data files in. This code will save the utterance-pair coherence scoring model, which will be further utilized in *test.py* for topic segmentation inference.
 
 ## 4. Topic Segmentation Inference:
+In the evaluation phase, three datasets are used for model testing, they are:
+* [DialSeg 711](https://github.com/xyease/TADAM)
+* [Doc2Dial](https://paperswithcode.com/paper/doc2dial-a-goal-oriented-document-grounded)
+* [ZYS](https://github.com/xyease/TADAM)
