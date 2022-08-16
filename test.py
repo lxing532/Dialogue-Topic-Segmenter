@@ -119,18 +119,18 @@ for file in input_files:
 		depth_scores = depth_score_cal(scores)
 		#print(depth_scores)
 
-		boundary_indice = np.argsort(np.array(depth_scores))[-pick_num:]
-		'''
-		threshold = sum(depth_scores)/(len(depth_scores)-depth_scores.count(0))-0.1*statistics.stdev(depth_scores)
+		#boundary_indice = np.argsort(np.array(depth_scores))[-pick_num:]
+	
+		threshold = sum(depth_scores)/(len(depth_scores))-0.5*statistics.stdev(depth_scores)
 		dp_var.append(statistics.stdev(depth_scores))
 		boundary_indice = []
-		'''
+	
 		seg_p_labels = [0]*(len(depth_scores)+1)
-		'''
+		
 		for i in range(len(depth_scores)):
 			if depth_scores[i] > threshold:
 				boundary_indice.append(i)
-		'''
+		
 		for i in boundary_indice:
 			seg_p_labels[i] = 1
 
