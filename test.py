@@ -121,7 +121,7 @@ for file in input_files:
 
 		#boundary_indice = np.argsort(np.array(depth_scores))[-pick_num:]
 	
-		threshold = sum(depth_scores)/(len(depth_scores))-0.5*statistics.stdev(depth_scores)
+		threshold = sum(depth_scores)/(len(depth_scores))-0.1*statistics.stdev(depth_scores)
 		dp_var.append(statistics.stdev(depth_scores))
 		boundary_indice = []
 	
