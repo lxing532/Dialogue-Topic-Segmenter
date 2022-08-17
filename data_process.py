@@ -45,11 +45,12 @@ for idx in range(13118):
         if acts[a_idx] == '2':
             if acts[a_idx+1] == '1':
                 positive_sample = [utterances[a_idx], utterances[a_idx+1]]
+                utterances_wo_1 = [utterances[i] for i in range(len(utterances)) if acts[i] != '1']
                 try:
                     if a_idx-1-win_size < 0:
-                        negative_sample_1 = [utterances[a_idx],random.choice(utterances[a_idx+1+win_size:])]
+                        negative_sample_1 = [utterances[a_idx],random.choice(utterances_wo_1[a_idx+1+win_size:])]
                     else:
-                        negative_sample_1 = [utterances[a_idx], random.choice(utterances[:a_idx-win_size]+utterances[a_idx+1+win_size:])]
+                        negative_sample_1 = [utterances[a_idx], random.choice(utterances_wo_1[:a_idx-win_size]+utterances_wo_1[a_idx+1+win_size:])]
                 except:
                     #print('there is no negative sample 1...')
                     count_no += 1
@@ -67,11 +68,12 @@ for idx in range(13118):
         if acts[a_idx] == '3':
             if acts[a_idx+1] == '4':
                 positive_sample = [utterances[a_idx], utterances[a_idx+1]]
+                utterances_wo_4 = [utterances[i] for i in range(len(utterances)) if acts[i] != '4']
                 try:
                     if a_idx-1-win_size < 0:
-                        negative_sample_1 = [utterances[a_idx],random.choice(utterances[a_idx+1+win_size:])]
+                        negative_sample_1 = [utterances[a_idx],random.choice(utterances_wo_4[a_idx+1+win_size:])]
                     else:
-                        negative_sample_1 = [utterances[a_idx], random.choice(utterances[:a_idx-win_size]+utterances[a_idx+1+win_size:])]
+                        negative_sample_1 = [utterances[a_idx], random.choice(utterances_wo_4[:a_idx-win_size]+utterances_wo_4[a_idx+1+win_size:])]
                 except:
                     #print('there is no negative sample 1...')
                     count_no += 1
@@ -106,29 +108,6 @@ for sample_size in sample_num_memory:
     f.write(str(sample_size))
     f.write('\n')
 f.close()
-
-
-
-
-'''
-# Load the BERT tokenizer.
-print('Loading BERT tokenizer...')
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True)
-
-sample_num_memory = []
-id_inputs = []
-
-for tup in tuples:
-    sample_num_memory.append(len(tup))
-    for pir in tup:
-        sent1 = pir[0]
-        sent2 = pir[1]
-        encoded_sent1 = tokenizer.encode(sent1, add_special_tokens = True, max_length = 128, return_tensors = 'pt')
-        encoded_sent2 = tokenizer.encode(sent2, add_special_tokens = True, max_length = 128, return_tensors = 'pt')
-        encoded_pair = encoded_sent1[0] + encoded_sent2[0]
-print(id_inputs[0])
-print(sample_num_memory[0:10])
-'''
 
 
 
