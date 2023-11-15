@@ -61,7 +61,7 @@ Welcome to the data hub dedicated to maintaining and organizing open-sourced dat
 
 ## 💡 List of Included Corpora (Remember adding original papers in your reference):
 > 1. **DialSeg_711:** *Xu et al., Topic aware multi-turn dialogue modeling, AAAI-21, 2021*
-> 2. **Doc2Dial:** *Feng et al., doc2dial: A Goal-Oriented Document-Grounded Dialogue Dataset, EMNLP-20, 2020*, *Xing and Carenini, Improving Unsupervised Dialogue Topic Segmentation with Utterance-Pair Coherence Scoring, SIGDIAL-21, 2021*
+> 2. **Doc2Dial:** *Feng et al., doc2dial: A Goal-Oriented Document-Grounded Dialogue Dataset, EMNLP-20, 2020* ; *Xing and Carenini, Improving Unsupervised Dialogue Topic Segmentation with Utterance-Pair Coherence Scoring, SIGDIAL-21, 2021*
 > 3. **Tiage:** *Xie et al., TIAGE: A Benchmark for Topic-Shift Aware Dialog Modeling, EMNLP Findings-21, 2021*
 > 4. **AMI:** *Carlette et al., The AMI Meeting Corpus: A Pre-announcement, 2005*
 > 5. **ICSI:** *Janin et al., The ICSI Meeting Corpus, ICASSP-03, 2003*
