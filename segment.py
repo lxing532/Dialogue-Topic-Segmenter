@@ -76,7 +76,6 @@ if __name__ == "__main__":
     if mode == 'CM': tokenizer = AutoTokenizer.from_pretrained('aws-ai/dse-bert-base')
     else: tokenizer = AutoTokenizer.from_pretrained(text_encoder_name)
 
-
     # load data (dev data - 1% of all data, test data - 99% of all data)
     dialogue_data = data_load(data)
     dev_data = []; test_data = []
@@ -85,7 +84,7 @@ if __name__ == "__main__":
         else: test_data.append(dialogue)
         #elif dialogue['set'] == 'test': test_data.append(dialogue)
 
-    # Evaluation starts here
+    # Evaluation starts here ...
     ## Hyper-parameter (alpha) search on dev set
     best_alpha, best_pk = alpha_search(dev_data, text_encoder, tokenizer, mode, device, -2, 2, 0.1)
     print('[INFO] The loaded text encoder is: ', text_encoder_name)
