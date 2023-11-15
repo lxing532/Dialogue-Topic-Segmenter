@@ -58,3 +58,7 @@ This Folder is organized into two primary directories:
 }
 ```
 For this instance, the label of segments is presented in the way of numbers of conserctive sentences. Specifically, [4,6,6,4,4] means this dialogue should be segmented into Seg1 (4 utterances), Seg2 (6 utterances), Seg3 (6 utterances), Seg4 (4 utterances), Seg5 (4 utterances).
+
+## Train or Validation or Test?
+If a corpus originally with train/dev/test division. I will follow such division by setting the value of "set" to "train", "dev", "test".
+Otherwise, I randomly select 1% of the data as dev set and set all other samples as test samples.
