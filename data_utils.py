@@ -43,9 +43,7 @@ def load_meta(text_path, act_path, topic_path):
     return txt_dict, topic_dict, act_dict
 
 def remove_duplicates(txt_dict, topic_dict, act_dict):
-    """
-    Remove duplicated dialogues from all three dictionaries.
-    """
+    # Remove duplicated dialogues from all three dictionaries.
     unique_utterances = {}
     cleaned_topic_dict = {}
     cleaned_act_dict = {}
@@ -61,9 +59,9 @@ def remove_duplicates(txt_dict, topic_dict, act_dict):
 
 ################# FOR POS/NEG SAMPLES SELECTION ################
 def pesudo_generation_for_one_sample(utterances, acts, topic, txt_dict, act_dict, topic_dict):
-    #print(len(utterances), len(acts))
     sample_triple_for_this_dial = []
     for a_idx in range(len(acts)-1):
+        # extract utterance triples (anchor, pos, neg_1, neg_2) for pattern Questions - Inform (2 - 1)
         if acts[a_idx] == '2':
             if acts[a_idx+1] == '1':
                 anchor = utterances[a_idx]
@@ -80,7 +78,8 @@ def pesudo_generation_for_one_sample(utterances, acts, topic, txt_dict, act_dict
 
                 for u_n1, u_n2 in itertools.product(negtive_minor_list, negative_major_list):
                     sample_triple_for_this_dial.append((anchor, postive, u_n1, u_n2))
-
+                    
+        # extract utterance triples (anchor, pos, neg_1, neg_2) for pattern Directives - Commissives (3 - 4)
         if acts[a_idx] == '3':
             if acts[a_idx+1] == '4':
                 anchor = utterances[a_idx]
@@ -117,12 +116,7 @@ def pesudo_generation(txt_dict, act_dict, topic_dict):
     return sample_triple
 
 def remove_exact_duplicates(entries):
-    """
-    Remove entries from the list that have exactly the same elements and return the cleaned list.
-
-    :param entries: List of entries, each entry is a tuple with exactly four elements.
-    :return: List of entries after removing duplicates.
-    """
+    # Remove entries from the list that have exactly the same elements and return the cleaned list.
     unique_entries = []
     seen = set()
     for entry in entries:
