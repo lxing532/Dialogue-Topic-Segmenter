@@ -7,11 +7,11 @@ Welcome to the data hub dedicated to maintaining and organizing open-sourced dat
 
 
 ## 💡 Folder Structure
-This Folder is organized into two primary directories:
+> This Folder is organized into two primary directories:
 
-- `./train`:
-  - **Purpose**: For replicating experiments detailed in [SIGDIAL-21 paper](https://www.lz-xing.com/assets/publications/2021_sigdial/paper.pdf).
-  - **Content**: Please add the [DailyDial dataset](https://arxiv.org/abs/1710.03957) here. You can download DailyDial from this [link](http://yanran.li/dailydialog).
+> - `./train`:
+>  - **Purpose**: For replicating experiments detailed in [SIGDIAL-21 paper](https://www.lz-xing.com/assets/publications/2021_sigdial/paper.pdf).
+>  - **Content**: Please add the [DailyDial dataset](https://arxiv.org/abs/1710.03957) here. You can download DailyDial from this [link](http://yanran.li/dailydialog).
 
 - `./eval`:
   - **Purpose**: Contains a compilation of all open-source datasets I found for dialogue topic segmentation.
