@@ -2,6 +2,7 @@
 
 Welcome to the data hub dedicated to maintaining and organizing open-sourced data resources for Dialogue Topic Segmentation! Hopefully, it will serve as a comprehensive collection point for evaluation datasets related to research and publications specifically for Dialogue Topic Segmentation.
 
+
 ## Why Maintain This Data Hub?
 While conducting research on dialogue topic segmentation, I noticed that corpora released by various research groups often present segment labels in different formats. This variability makes it time-consuming to write scripts for unifying these datasets into a format that is easily accessible and usable by my code. Therefore, I believe it would be beneficial to establish a data hub containing all available corpora standardized into a more clear and understandable format. This would save future researchers the effort of having to code for each specific corpus individually.
 
@@ -64,6 +65,6 @@ If a corpus comes with an original division into train, validation (dev), and te
 
 
 ## Contributing and Future Plans
-We plan to continually expand and update this dataset collection. If you have developed or discovered new datasets relevant to dialogue topic segmentation, we welcome your contributions by merge request:
-1. Format Syncing: Format your dataset to match our standard structure and submit it.
-2. Original Data Submission: If format conversion is challenging and you don't have time for it, feel free to submit the original dataset. We will assist in aligning it with our standard format.
+We plan to continually expand and update this dataset collection. If you have developed or discovered new datasets relevant to dialogue topic segmentation, we welcome your contributions by pull request:
+1. **Format Syncing:** Format your dataset to match our standard structure and submit it.
+2. **Original Data Submission:** If format conversion is challenging and you don't have time for it, feel free to submit the original dataset. We will assist in aligning it with our standard format.
