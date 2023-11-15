@@ -148,7 +148,7 @@ class UtteranceDataset(Dataset):
     def __getitem__(self, idx):
         anchor, positive, negative1, negative2 = self.data[idx]
 
-        # construct pairs
+        # construct and encode pos/neg pairs in NSP manner
         pos_pair = self.tokenizer(anchor, positive, padding='max_length', max_length = 128, truncation=True, return_tensors='pt')
         neg1_pair = self.tokenizer(anchor, negative1, padding='max_length', max_length = 128, truncation=True, return_tensors='pt')
         neg2_pair = self.tokenizer(anchor, negative2, padding='max_length', max_length = 128, truncation=True, return_tensors='pt')
