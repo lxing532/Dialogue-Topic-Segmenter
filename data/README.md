@@ -75,4 +75,4 @@ Welcome to the data hub dedicated to maintaining and organizing open-sourced dat
 ## 💡 Contributing and Future Plans
 > We plan to continually expand and update this dataset collection. If you have developed or discovered new datasets relevant to dialogue topic segmentation, we welcome your contributions by pull request:
 > 1. **Format Syncing:** Format your dataset to match our standard structure and submit it.
-> 2. **Original Data Submission:** If format conversion is challenging and you don't have time for it, feel free to submit the original dataset. We will assist in aligning it with our standard format.
+> 2. **Original Data Submission:** If format conversion is challenging and you don't have time for it, feel free to submit the original dataset. We will assist in aligning it with the standard format we use here.
