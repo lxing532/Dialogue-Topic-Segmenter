@@ -14,14 +14,14 @@ def similarity_computing(texts, tokenizer, text_encoder, mode, device):
         with torch.no_grad():
             embeddings = text_encoder(input_ids=inputs["input_ids"].to(device), attention_mask=inputs["attention_mask"].to(device))
             attention_mask = inputs["attention_mask"].unsqueeze(-1).to(device)
-            embeddings = torch.sum(embeddings[0]*attention_mask, dim=1) / torch.sum(attention_mask, dim=1)  # OPTION 1: mean-pooling
-            #embeddings = embeddings[0][:,0,:]
+            embeddings = torch.sum(embeddings[0]*attention_mask, dim=1) / torch.sum(attention_mask, dim=1)  # mean-pooling
+            #embeddings = embeddings[0][:,0,:] # CLS
         scores = torch.cosine_similarity(embeddings[:-1, :], embeddings[1:, :]).cpu().detach().numpy()
 
     if mode == 'NSP': 
         ### OPT 2: CROSS-ENCODER
         scores = []
-        # calculate the sentence embeddings by averaging the embeddings of non-padding words
+        # calculate the NSP probability and use it as score
         with torch.no_grad():
             for i in range(len(texts)-1):
                 sent1 = texts[i]
@@ -35,7 +35,7 @@ def similarity_computing(texts, tokenizer, text_encoder, mode, device):
     if mode == 'CM':
         ### OPT 3: COHERENCE SCORING
         scores = []
-        # calculate the sentence embeddings by averaging the embeddings of non-padding words
+        # calculate the coherence score and use it as score
         with torch.no_grad():
             for i in range(len(texts)-1):
                 sent1 = texts[i]
