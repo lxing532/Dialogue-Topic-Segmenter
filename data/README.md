@@ -3,7 +3,7 @@
 Welcome to the data hub dedicated to maintaining and organizing open-sourced data resources for Dialogue Topic Segmentation! Hopefully, it will serve as a comprehensive collection point for evaluation datasets related to research and publications specifically for Dialogue Topic Segmentation.
 
 ## Why Maintain This Data Hub?
-
+While conducting research on dialogue topic segmentation, I noticed that corpora released by various research groups often present segment labels in different formats. This variability makes it time-consuming to write scripts for unifying these datasets into a format that is easily accessible and usable by my code. Therefore, I believe it would be beneficial to establish a data hub containing all available corpora standardized into a more clear and understandable format. This would save future researchers the effort of having to code for each specific corpus individually.
 
 
 ## Folder Structure
