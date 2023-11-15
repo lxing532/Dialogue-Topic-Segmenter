@@ -56,7 +56,7 @@ Welcome to the data hub dedicated to maintaining and organizing open-sourced dat
     "set": "test"
 }
 ```
-> For this instance, the label of segments is presented in the way of numbers of conserctive sentences. Specifically, [4,6,6,4,4] means this dialogue should be segmented into Seg1 (4 utterances), Seg2 (6 utterances), Seg3 (6 utterances), Seg4 (4 utterances), Seg5 (4 utterances).
+> For this instance, the label of segments is presented in the way of numbers of consecutive sentences. Specifically, [4,6,6,4,4] means this dialogue should be segmented into Seg1 (4 utterances), Seg2 (6 utterances), Seg3 (6 utterances), Seg4 (4 utterances), Seg5 (4 utterances).
 
 
 ## 💡 List of Included Corpora (Remember adding original papers in your reference):
