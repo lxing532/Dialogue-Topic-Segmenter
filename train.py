@@ -3,8 +3,8 @@ import torch
 from torch.utils.data import DataLoader, random_split
 from transformers import AdamW
 from transformers import get_linear_schedule_with_warmup
-from data_process import UtteranceDataset
-from coherence_model import CoherenceNet
+from data_utils import UtteranceDataset
+from model_utils import CoherenceNet
 from transformers import AutoModel, AutoTokenizer
 from tqdm import tqdm
 import os
@@ -13,10 +13,13 @@ warnings.filterwarnings('ignore')
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(usage='python tt_segment.py -t text -i path/to/text_data -v path/to/video_data -s path/to/checkpoints')
-    parser.add_argument('-t', '--dataset', help='dialseg_711 or doc2dial or Tiger', default='dialseg_711.json')
-    parser.add_argument('-a', '--alpha', help='hyper-parameter of threshold', default=0.5)
+    parser = argparse.ArgumentParser(usage='python train.py -t path/to/dataset -e aws-ai/dse-bert-base -s path/to/checkpoints -m 1')
+    parser.add_argument('-t', '--dataset', help='path of dataset for pseudo data generation', default='./data/train/dailydialog')
+    parser.add_argument('-r', '--epochs', help='number of training epochs', default=10)
+    parser.add_argument('-b', '--batch_size', help='batch size', default=24)
+    parser.add_argument('-m', '--margin', help='hyper-parameter of marginal ranking loss', default=1)
     parser.add_argument('-e', '--text_encoder', help='text encoder for utterances', default='aws-ai/dse-bert-base')
+    parser.add_argument('-s', '--checkpoints_path', help='path to save checkpoints', default='./checkpoints/')
     args = parser.parse_args()
     return args
 
@@ -50,8 +53,7 @@ def validation_metric(sample_list):
     return count/float(len(sample_list)*3)
 
 
-def train(model, train_dataloader, val_dataloader, optimizer, epochs, margin, device):
-    epochs = 10
+def train(model, train_dataloader, val_dataloader, optimizer, epochs, margin, device, checkpoints_path):
     # Total number of training steps is number of batches * number of epochs.
     total_steps = len(train_dataloader) * epochs
     # Create the learning rate scheduler.
@@ -72,7 +74,7 @@ def train(model, train_dataloader, val_dataloader, optimizer, epochs, margin, de
                 model.zero_grad()
                 output = model(batch)  # prediction
 
-                loss = marginal_ranking_loss(output, 1) # loss computing
+                loss = marginal_ranking_loss(output, margin) # loss computing
                 total_loss += loss.item()
 
                 if step % 1000 == 0 and not step == 0: # log every 1000 steps
@@ -96,7 +98,7 @@ def train(model, train_dataloader, val_dataloader, optimizer, epochs, margin, de
             log_file.write(val_log); log_file.flush()
 
             # Save model
-            torch.save(model.state_dict(), './dse_checkpoints_easy/cpt_'+str(epoch_i)+'.pth')  # save the model checkpoint for this epoch.
+            torch.save(model.state_dict(), checkpoints_path+'/cpt_'+str(epoch_i)+'.pth')  # save the model checkpoint for this epoch.
 
 
 def validation(model, val_dataloader, device):
@@ -112,12 +114,14 @@ def validation(model, val_dataloader, device):
     
 
 def main():
-    os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+    os.environ['CUDA_VISIBLE_DEVICES'] = '1'  # can delete if not using it.
     # Load settings
     args = parse_args()
     data = args.dataset
-    epochs = 10
-    margin = 1
+    epochs = args.epochs
+    batch = args.batch_size
+    margin = args.margin
+    checkpoints_path = args.checkpoints_path
     
     # cpu or gpu
     use_cuda = torch.cuda.is_available()
@@ -129,9 +133,9 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(args.text_encoder)
 
     # Create dataset and dataloader
-    text_path = './ijcnlp_dailydialog/dialogues_text.txt'
-    topic_path = './ijcnlp_dailydialog/dialogues_topic.txt'
-    act_path = './ijcnlp_dailydialog/dialogues_act.txt'
+    text_path = data + '/dialogues_text.txt'
+    topic_path = data + '/dialogues_topic.txt'
+    act_path = data + '/dialogues_act.txt'
     full_dataset = UtteranceDataset(text_path, topic_path, act_path, tokenizer)
     # Determine sizes for train and validation sets
     val_size = int(0.1 * len(full_dataset))  # for 10% validation set
@@ -139,8 +143,8 @@ def main():
 
     # Split the dataset
     train_dataset, val_dataset = random_split(full_dataset, [train_size, val_size])
-    train_dataloader = DataLoader(train_dataset, batch_size=24, shuffle=True, collate_fn=collate_fn)
-    val_dataloader = DataLoader(val_dataset, batch_size=24, shuffle=False, collate_fn=collate_fn)
+    train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=collate_fn)
+    val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, collate_fn=collate_fn)
 
     # Utterance-pair coherence scoring model
     model = CoherenceNet(model)
@@ -148,7 +152,7 @@ def main():
     optimizer = AdamW(model.parameters(), lr = 2e-5, eps = 1e-8)
 
     # Training loop
-    train(model, train_dataloader, val_dataloader, optimizer, epochs, margin, device)
+    train(model, train_dataloader, val_dataloader, optimizer, epochs, margin, device, checkpoints_path)
 
 
 if __name__ == "__main__":
