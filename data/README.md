@@ -13,9 +13,9 @@ Welcome to the data hub dedicated to maintaining and organizing open-sourced dat
 >  - **Purpose**: For replicating experiments detailed in [SIGDIAL-21 paper](https://www.lz-xing.com/assets/publications/2021_sigdial/paper.pdf).
 >  - **Content**: Please add the [DailyDial dataset](https://arxiv.org/abs/1710.03957) here. You can download DailyDial from this [link](http://yanran.li/dailydialog).
 
-- `./eval`:
-  - **Purpose**: Contains a compilation of all open-source datasets I found for dialogue topic segmentation.
-  - **Content**: Each dataset is formatted identically for ease of use as illustrated in the following example:
+> - `./eval`:
+>  - **Purpose**: Contains a compilation of all open-source datasets I found for dialogue topic segmentation.
+>  - **Content**: Each dataset is formatted identically for ease of use as illustrated in the following example:
 
 ```json
 {
@@ -56,14 +56,14 @@ Welcome to the data hub dedicated to maintaining and organizing open-sourced dat
     "set": "test"
 }
 ```
-For this instance, the label of segments is presented in the way of numbers of conserctive sentences. Specifically, [4,6,6,4,4] means this dialogue should be segmented into Seg1 (4 utterances), Seg2 (6 utterances), Seg3 (6 utterances), Seg4 (4 utterances), Seg5 (4 utterances).
+> For this instance, the label of segments is presented in the way of numbers of conserctive sentences. Specifically, [4,6,6,4,4] means this dialogue should be segmented into Seg1 (4 utterances), Seg2 (6 utterances), Seg3 (6 utterances), Seg4 (4 utterances), Seg5 (4 utterances).
 
 
 ## 💡 Train or Validation or Test?
-If a corpus comes with an original division into train, validation (dev), and test sets, I will adhere to this structure by assigning the value of 'set' as 'train', 'dev', or 'test' accordingly. In cases where such a division is not provided, I will randomly allocate 1% of the data as the validation (dev) set and designate the remaining samples as test samples.
+> If a corpus comes with an original division into train, validation (dev), and test sets, I will adhere to this structure by assigning the value of 'set' as 'train', 'dev', or 'test' accordingly. In cases where such a division is not provided, I will randomly allocate 1% of the data as the validation (dev) set and designate the remaining samples as test samples.
 
 
 ## 💡 Contributing and Future Plans
-We plan to continually expand and update this dataset collection. If you have developed or discovered new datasets relevant to dialogue topic segmentation, we welcome your contributions by pull request:
+> We plan to continually expand and update this dataset collection. If you have developed or discovered new datasets relevant to dialogue topic segmentation, we welcome your contributions by pull request:
 1. **Format Syncing:** Format your dataset to match our standard structure and submit it.
 2. **Original Data Submission:** If format conversion is challenging and you don't have time for it, feel free to submit the original dataset. We will assist in aligning it with our standard format.
