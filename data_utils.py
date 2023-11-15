@@ -1,5 +1,5 @@
 ## This data_processing script is initialized to process the DailyDal dataset as descripted in the SIGDIAL paper.
-## Please modify the code to set some settings off for your need.
+## You can modify the code to set some settings off for your need.
 
 from torch.utils.data import Dataset
 import random
