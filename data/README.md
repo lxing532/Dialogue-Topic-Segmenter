@@ -59,6 +59,15 @@ Welcome to the data hub dedicated to maintaining and organizing open-sourced dat
 > For this instance, the label of segments is presented in the way of numbers of conserctive sentences. Specifically, [4,6,6,4,4] means this dialogue should be segmented into Seg1 (4 utterances), Seg2 (6 utterances), Seg3 (6 utterances), Seg4 (4 utterances), Seg5 (4 utterances).
 
 
+## 💡 List of Included Corpora (Remember adding original papers in your reference):
+1. **DialSeg_711:** *Xu et al., Topic aware multi-turn dialogue modeling, AAAI-21, 2021*
+2. **Doc2Dial:** *Feng et al., doc2dial: A Goal-Oriented Document-Grounded Dialogue Dataset, EMNLP-20, 2020*, *Xing and Carenini, Improving Unsupervised Dialogue Topic Segmentation with Utterance-Pair Coherence Scoring, SIGDIAL-21, 2021*
+3. **Tiage:** *Xie et al., TIAGE: A Benchmark for Topic-Shift Aware Dialog Modeling, EMNLP Findings-21, 2021*
+4. **AMI:** **
+5. **ICSI:** **
+6. **Committee:** **
+
+
 ## 💡 Train or Validation or Test?
 > If a corpus comes with an original division into train, validation (dev), and test sets, I will adhere to this structure by assigning the value of 'set' as 'train', 'dev', or 'test' accordingly. In cases where such a division is not provided, I will randomly allocate 1% of the data as the validation (dev) set and designate the remaining samples as test samples.
 
