@@ -16,17 +16,17 @@ This list of python scripts are together as the source codebase of our paper:
   - __*neural_texttiling.py*__ : contains the detailed implementation of TextTiling with different settings of text encoder (e.g., Bi-encoder, cross-encoder, coherence scoring etc)
 
 ### Training Steps:
-> 0. Instaill env requirements
+> **0. Instaill env requirements**
 ```
 pip install -r requirements.txt
 ```
-> 1. Download DailyDial from this [link](http://yanran.li/dailydialog) and add the following three files to __*./data/train/dailydialog/*__ :
+> **1. Download DailyDial from this [link](http://yanran.li/dailydialog) and add the following three files to __*./data/train/dailydialog/*__ :**
 ``` diff
 + dialogues_text.txt
 + dialogues_topic.txt
 + dialogue_act.txt
 ```
-> 2. Execute the training command, for example:
+> **2. Execute the training command, for example:**
 ```
 python train.py -t ./data/train/dailydialog/ -e bert-base-uncased -s ./checkpoints -m 1 -r 10 -b 32
 ```
