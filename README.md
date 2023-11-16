@@ -41,6 +41,13 @@ python segment.py -t ./data/eval/dialseg_711.json -e ./checkpoints/cpt_0.pth -m 
 ```
 >💡Instruction:
 >  * The evaluation script supports the standarized data form defined in our [Dialogue Topic Segmentation Data Hub](https://github.com/lxing532/Dialogue-Topic-Segmenter/tree/main/data). You can easily conduct test by loading any corpus under this directory (./data/eval/).
+>  * The evaluation script provides a easy-to-use TextTiling-based pipeline where you can plug different bert-based text encoders (e.g., roberta, sbert, tod-bert, dse). For example:
+>      ```
+>      python segment.py -t ./data/eval/dialseg_711.json -e roberta-base -m SC
+>      python segment.py -t ./data/eval/dialseg_711.json -e sentence-transformers/all-mpnet-base-v2 -m SC
+>      python segment.py -t ./data/eval/dialseg_711.json -e TODBERT/TOD-BERT-JNT-V1 -m NSP
+>      python segment.py -t ./data/eval/dialseg_711.json -e aws-ai/dse-bert-base -m NSP
+>      ```
 >  * The evaluation script supports three sentence pair scoring paradigm:
 >    * **_Sequence Classification (SC)_** : Encode each sentence individually and compute consine similarty as sentence-pair score.
 >      ```
