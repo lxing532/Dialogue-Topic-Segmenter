@@ -15,7 +15,7 @@ This list of python scripts are together as the source codebase of our paper:
   - __*segment.py*__ : contains the main code to conduct evluation procedure based on the TextTiling segmentation framework.
   - __*neural_texttiling.py*__ : contains the detailed implementation of TextTiling with different settings of text encoder (e.g., Bi-encoder, cross-encoder, coherence scoring etc)
 
-### Training Steps:
+### Training/Testing Steps:
 **0. Instaill env requirements**
 ```
 pip install -r requirements.txt
