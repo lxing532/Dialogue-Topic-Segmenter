@@ -16,7 +16,7 @@ This list of python scripts are together as the source codebase of our paper:
   - __*neural_texttiling.py*__ : contains the detailed implementation of TextTiling with different settings of text encoder (e.g., Bi-encoder, cross-encoder, coherence scoring etc)
 
 ### Training Steps:
->0. Instaill env requirements
+> 0. Instaill env requirements
 ```
 pip install -r requirements.txt
 ```
@@ -26,6 +26,14 @@ pip install -r requirements.txt
 + dialogues_topic.txt
 + dialogue_act.txt
 ```
+> 2. Execute the training command, for example:
+```
+python train.py -t ./data/train/dailydialog/ -e bert-base-uncased -s ./checkpoints -m 1 -r 10 -b 32
+```
+>💡Notes:
+>  * The current data loading/generation code (data_utils.py) is specifically implemented for DailyDialog, please adjust it accordingly to load your datasets if need.
+>  * The training code only support bert-based model language model supporting mode of Next Sentence Prediction, otherwise it will run into errors (e.g., loading roberta, sbert as text encoder).
+>  * Checkpoint of each epoch will be saved to your defined directory.
 
 ## 2. Data Generation:
 Once the source of training data is ready, we run *data_process.py* to generate the postive and negative utterance pair samples for the training of BERT-based coherence scoring model. Please note that the code will generate three files:
