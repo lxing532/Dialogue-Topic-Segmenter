@@ -81,4 +81,14 @@ python segment.py -t ./data/eval/dialseg_711.json -e ./checkpoints/cpt_0.pth -m 
 <br/>
 
 ## PART II (Continously Update):
-We also maintain a data hub for dialogue topic segmentation with corpora cleaned to a standardized format compatible with our evaluation code. We believe maintaining this data hub will also save efforts of other ongoing research as there is no need to write data loading code for each individual corpus anymore. For details about this data hub and how to contribute to it, please refer [this](https://github.com/lxing532/Dialogue-Topic-Segmenter/tree/main/data).
+We also maintain a data hub for dialogue topic segmentation with corpora cleaned to a standardized format compatible with our evaluation code. We believe maintaining this data hub will also save efforts of other ongoing research as there is no need to write data loading code for each individual corpus anymore. 
+The current list of dataset for dialogue topic segmentation covers:
+>  * DialSeg_711
+>  * Doc2Dial
+>  * Tiage
+>  * AMI (meeting)
+>  * ICSI (meeting)
+>  * Committee (meeting)
+
+Don't forget citing these papers if you use any of these dataset in your work!
+For more details about this data hub and how to contribute to it, please refer [this](https://github.com/lxing532/Dialogue-Topic-Segmenter/tree/main/data).
