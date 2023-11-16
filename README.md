@@ -66,20 +66,14 @@ python segment.py -t ./data/eval/dialseg_711.json -e ./checkpoints/cpt_0.pth -m 
 >  * Sometimes you may want to investigate actual segmentation prediction by case more than metric values, ```neural_texttiling.TextTiling``` returns segment_prediction as well.
 
 
-## 2. Data Generation:
-Once the source of training data is ready, we run *data_process.py* to generate the postive and negative utterance pair samples for the training of BERT-based coherence scoring model. Please note that the code will generate three files:
-* dialogues_text.txt
-* dialogues_topic.txt
-* dialogues_act.txt
-
-These three files will be required to work together to manage the data loading of model training.
-
-## 3. Coherence Scoring Model Training:
-Please modify the paths in the *model.py* file to the paths you save your data files in. This code will save the utterance-pair coherence scoring model, which will be further utilized in *test.py* for topic segmentation inference.
-
-## 4. Topic Segmentation Inference:
-In the evaluation phase, three datasets are used for model testing, they are:
-* [DialSeg 711](https://github.com/xyease/TADAM)
-* [Doc2Dial](https://paperswithcode.com/paper/doc2dial-a-goal-oriented-document-grounded)
-* [ZYS](https://github.com/xyease/TADAM)
-
+### Reference (If you use code in this database for your research, please include our paper in reference)
+```
+@inproceedings{xing-carenini-2021-improving,
+    title = "Improving Unsupervised Dialogue Topic Segmentation with Utterance-Pair Coherence Scoring",
+    author = "Xing, Linzi and Carenini, Giuseppe",
+    booktitle = "Proceedings of the 22nd Annual Meeting of the Special Interest Group on Discourse and Dialogue",
+    year = "2021",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.sigdial-1.18",
+    pages = "167--177"}
+```
