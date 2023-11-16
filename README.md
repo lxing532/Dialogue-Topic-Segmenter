@@ -39,10 +39,16 @@ python train.py -t ./data/train/dailydialog/ -e bert-base-uncased -s ./checkpoin
 ```
 python segment.py -t ./data/eval/dialseg_711.json -e ./checkpoints/cpt_0.pth -m CM
 ```
->💡Notes:
->  * The current data loading/generation code (data_utils.py) is specifically implemented for DailyDialog, please adjust it accordingly to load your datasets if need.
->  * The training code only support bert-based language model supporting mode of Next Sentence Prediction, otherwise it will run into errors (e.g., loading roberta, sbert as text encoder).
->  * Checkpoint of each epoch will be saved to your specified directory.
+>💡Instruction:
+>  * The evaluation script supports the standarized data form defined in our [Dialogue Topic Segmentation Data Hub](https://github.com/lxing532/Dialogue-Topic-Segmenter/tree/main/data). You can easily conduct test by loading any corpus in the hub.
+>  * The evaluation script supports three sentence pair scoring paradigm:
+>    * _Sequence Classification (SC)_ : Encode each sentence individually and compute consine similarty as sentence-pair score.
+>    ```
+>    python segment.py -t ./data/eval/dialseg_711.json -e ./checkpoints/cpt_0.pth -m CM
+>    ```
+>    * _Next Sentence Prediction (NSP)_ : Encode a pair of sentences together and use the next sentence probability as sentence-pair score.
+>    * _Coherence Modeing (CM)_ : Encode a pair of sentences together and use the trained coherence scoring model score as sentence-pair score.
+
 
 
 ## 2. Data Generation:
