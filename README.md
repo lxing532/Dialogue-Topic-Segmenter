@@ -32,8 +32,18 @@ python train.py -t ./data/train/dailydialog/ -e bert-base-uncased -s ./checkpoin
 ```
 >💡Notes:
 >  * The current data loading/generation code (data_utils.py) is specifically implemented for DailyDialog, please adjust it accordingly to load your datasets if need.
->  * The training code only support bert-based model language model supporting mode of Next Sentence Prediction, otherwise it will run into errors (e.g., loading roberta, sbert as text encoder).
->  * Checkpoint of each epoch will be saved to your defined directory.
+>  * The training code only support bert-based language model supporting mode of Next Sentence Prediction, otherwise it will run into errors (e.g., loading roberta, sbert as text encoder).
+>  * Checkpoint of each epoch will be saved to your specified directory.
+
+> **3. For evaluation, you can run command like:**
+```
+python segment.py -t ./data/eval/dialseg_711.json -e ./checkpoints/cpt_0.pth -m CM
+```
+>💡Notes:
+>  * The current data loading/generation code (data_utils.py) is specifically implemented for DailyDialog, please adjust it accordingly to load your datasets if need.
+>  * The training code only support bert-based language model supporting mode of Next Sentence Prediction, otherwise it will run into errors (e.g., loading roberta, sbert as text encoder).
+>  * Checkpoint of each epoch will be saved to your specified directory.
+
 
 ## 2. Data Generation:
 Once the source of training data is ready, we run *data_process.py* to generate the postive and negative utterance pair samples for the training of BERT-based coherence scoring model. Please note that the code will generate three files:
