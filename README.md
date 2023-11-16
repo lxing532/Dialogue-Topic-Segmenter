@@ -15,7 +15,7 @@ This list of python scripts are together as the source codebase of our paper:
   - __*segment.py*__ : contains the main code to conduct evluation procedure based on the TextTiling segmentation framework.
   - __*neural_texttiling.py*__ : contains the detailed implementation of TextTiling with different settings of text encoder (e.g., Bi-encoder, cross-encoder, coherence scoring etc)
 
-### Training/Testing Steps:
+### 👉🏼 Training/Testing Steps:
 **0. Instaill env requirements**
   ```
   pip install -r requirements.txt
@@ -66,7 +66,7 @@ This list of python scripts are together as the source codebase of our paper:
 >  * Sometimes you may want to investigate actual segmentation prediction by case more than metric values, ```neural_texttiling.TextTiling``` returns segment_prediction as well.
 
 
-### Reference (If you use code in this database for your research, please include our paper in reference)
+### 👉🏼 Reference (If you use code in this database for your research, please include our paper in reference)
 ```
 @inproceedings{xing-carenini-2021-improving,
     title = "Improving Unsupervised Dialogue Topic Segmentation with Utterance-Pair Coherence Scoring",
