@@ -1,7 +1,7 @@
 # Code and Data for Dialogue Topic Segmenter
 This repository maintains:
-* The source code of "[Improving Unsupervised Dialogue Topic Segmentation with Utterance-Pair Coherence Scoring](https://aclanthology.org/2021.sigdial-1.18.pdf)", SIGDIAL 2021.
-* **[Continously Update]** A [dataset collection](https://github.com/lxing532/Dialogue-Topic-Segmenter/tree/main/data) of Dialogue Topic Segmentation cleaned to a standarized format.
+* **[PART I]** The source code of "[Improving Unsupervised Dialogue Topic Segmentation with Utterance-Pair Coherence Scoring](https://aclanthology.org/2021.sigdial-1.18.pdf)", SIGDIAL 2021.
+* **[PART II - Continously Update]** A [dataset collection](https://github.com/lxing532/Dialogue-Topic-Segmenter/tree/main/data) of Dialogue Topic Segmentation cleaned to a standarized format.
 
 ## 1. Datasets:
 In the paper, we mention two training datasets for Utterance-Pair Coherence Scoring model training. They are:
@@ -26,6 +26,3 @@ In the evaluation phase, three datasets are used for model testing, they are:
 * [Doc2Dial](https://paperswithcode.com/paper/doc2dial-a-goal-oriented-document-grounded)
 * [ZYS](https://github.com/xyease/TADAM)
 
-````diff
-+ Green Text
-- Red Text
