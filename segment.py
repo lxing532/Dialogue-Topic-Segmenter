@@ -43,7 +43,7 @@ def alpha_search(dialogue_data, text_encoder, tokenizer, mode, device, lowerboun
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(usage='python tt_segment.py -t path/to/data -e text_encoder_name -m CM')
+    parser = argparse.ArgumentParser(usage='python segment.py -t path/to/data -e text_encoder_name -m CM')
     parser.add_argument('-t', '--dataset', help='path to the dataset', default='dialseg_711.json')
     parser.add_argument('-e', '--text_encoder', help='text encoder for utterances', default='./dse_checkpoints/cpt_1.pth')
     parser.add_argument('-m', '--mode', help='encoder as sequence classification (SC) / next sentence prediction (NSP) / coherence model (CM)', default='CM')
