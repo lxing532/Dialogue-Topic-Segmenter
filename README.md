@@ -17,28 +17,28 @@ This list of python scripts are together as the source codebase of our paper:
 
 ### Training/Testing Steps:
 **0. Instaill env requirements**
-```
-pip install -r requirements.txt
-```
+  ```
+  pip install -r requirements.txt
+  ```
 **1. Download DailyDial from this [link](http://yanran.li/dailydialog) and add the following three files to __*./data/train/dailydialog/*__ :**
-``` diff
-+ dialogues_text.txt
-+ dialogues_topic.txt
-+ dialogue_act.txt
-```
+  ``` diff
+  + dialogues_text.txt
+  + dialogues_topic.txt
+  + dialogue_act.txt
+  ```
 **2. Execute the training command, for example:**
-```
-python train.py -t ./data/train/dailydialog/ -e bert-base-uncased -s ./checkpoints -m 1 -r 10 -b 32
-```
+  ```
+  python train.py -t ./data/train/dailydialog/ -e bert-base-uncased -s ./checkpoints -m 1 -r 10 -b 32
+  ```
 >💡Notes:
 >  * The current data loading/generation code (data_utils.py) is specifically implemented for DailyDialog, please adjust it accordingly to load your datasets if need.
 >  * The training code only support bert-based language model supporting mode of Next Sentence Prediction, otherwise it will run into errors (e.g., loading roberta, sbert as text encoder).
 >  * Checkpoint of each epoch will be saved to your specified directory.
 
 **3. For evaluation, you can run command like:**
-```
-python segment.py -t ./data/eval/dialseg_711.json -e ./checkpoints/cpt_0.pth -m CM
-```
+  ```
+  python segment.py -t ./data/eval/dialseg_711.json -e ./checkpoints/cpt_0.pth -m CM
+  ```
 >💡Instruction:
 >  * The evaluation script supports the standarized data form defined in our [Dialogue Topic Segmentation Data Hub](https://github.com/lxing532/Dialogue-Topic-Segmenter/tree/main/data). You can easily conduct test by loading any corpus under this directory (./data/eval/).
 >  * The evaluation script provides a easy-to-use TextTiling-based pipeline where you can plug different bert-based text encoders (e.g., roberta, sbert, tod-bert, dse). For example:
@@ -48,7 +48,7 @@ python segment.py -t ./data/eval/dialseg_711.json -e ./checkpoints/cpt_0.pth -m 
 >      python segment.py -t ./data/eval/dialseg_711.json -e TODBERT/TOD-BERT-JNT-V1 -m NSP
 >      python segment.py -t ./data/eval/dialseg_711.json -e aws-ai/dse-bert-base -m NSP
 >      ```
->  * The evaluation script supports three sentence pair scoring paradigm:
+>  * The evaluation script supports three sentence pair scoring paradigms:
 >    * **_Sequence Classification (SC)_** : Encode each sentence individually and compute consine similarty as sentence-pair score.
 >      ```
 >      python segment.py -t ./data/eval/dialseg_711.json -e bert-base-uncased -m SC
