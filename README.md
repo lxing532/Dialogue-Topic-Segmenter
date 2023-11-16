@@ -1,7 +1,7 @@
 # Code and Data for Dialogue Topic Segmenter
 This repository maintains:
 * **[PART I]** The source code of "[Improving Unsupervised Dialogue Topic Segmentation with Utterance-Pair Coherence Scoring](https://aclanthology.org/2021.sigdial-1.18.pdf)", SIGDIAL-21.
-* **[PART II - Continously Update]** A [dataset collection](https://github.com/lxing532/Dialogue-Topic-Segmenter/tree/main/data) of Dialogue Topic Segmentation cleaned to a standarized format.
+* **[PART II - Continously Update]** A [dataset collection](https://github.com/lxing532/Dialogue-Topic-Segmenter/tree/main/data) of Dialogue Topic Segmentation cleaned to a standardized format.
 
 <br/>
 
@@ -77,3 +77,8 @@ python segment.py -t ./data/eval/dialseg_711.json -e ./checkpoints/cpt_0.pth -m 
     url = "https://aclanthology.org/2021.sigdial-1.18",
     pages = "167--177"}
 ```
+
+<br/>
+
+## PART II (Continously Update):
+We also maintain a data hub for dialogue topic segmentation with corpora cleaned to a standardized format compatible with our evaluation code. We believe maintaining this data hub will also save efforts of other ongoing research as there is no need to write data loading code for each individual corpus anymore. For details about this data hub and how to contribute to it, please refer [this](https://github.com/lxing532/Dialogue-Topic-Segmenter/tree/main/data).
