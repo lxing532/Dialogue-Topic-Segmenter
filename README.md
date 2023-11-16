@@ -40,21 +40,23 @@ python train.py -t ./data/train/dailydialog/ -e bert-base-uncased -s ./checkpoin
 python segment.py -t ./data/eval/dialseg_711.json -e ./checkpoints/cpt_0.pth -m CM
 ```
 >💡Instruction:
->  * The evaluation script supports the standarized data form defined in our [Dialogue Topic Segmentation Data Hub](https://github.com/lxing532/Dialogue-Topic-Segmenter/tree/main/data). You can easily conduct test by loading any corpus in the hub.
+>  * The evaluation script supports the standarized data form defined in our [Dialogue Topic Segmentation Data Hub](https://github.com/lxing532/Dialogue-Topic-Segmenter/tree/main/data). You can easily conduct test by loading any corpus under this directory (./data/eval/).
 >  * The evaluation script supports three sentence pair scoring paradigm:
->    * _Sequence Classification (SC)_ : Encode each sentence individually and compute consine similarty as sentence-pair score.
+>    * **_Sequence Classification (SC)_** : Encode each sentence individually and compute consine similarty as sentence-pair score.
 >      ```
 >      python segment.py -t ./data/eval/dialseg_711.json -e bert-base-uncased -m SC
 >      ```
->    * _Next Sentence Prediction (NSP)_ : Encode a pair of sentences together and use the next sentence probability as sentence-pair score.
+>    * **_Next Sentence Prediction (NSP)_** : Encode a pair of sentences together and use the next sentence probability as sentence-pair score.
 >      ```
 >      python segment.py -t ./data/eval/dialseg_711.json -e bert-base-uncased -m NSP
 >      ```
->    * _Coherence Modeing (CM)_ : Encode a pair of sentences together and use the trained coherence scoring model score as sentence-pair score.
+>    * **_Coherence Modeing (CM)_** : Encode a pair of sentences together with trained coherence scoring model and use the coherence score as sentence-pair score.
 >      ```
 >      python segment.py -t ./data/eval/dialseg_711.json -e ./checkpoints/cpt_1.pth -m CM
 >      ```
-
+>  * The default setting to obtain sentence representation is mean-pooling over all token hidden states, if you want to explore other options (e.g., CLS representation), replace line 17 -> line 18 in neural_texttiling.py .
+>  * The default included evaluation metrics are: **P_k, Windiff, F1**. To add your own metrics, please adjust the code in ```neural_texttiling.TextTiling```.
+>  * Sometimes you may want to investigate actual segmentation prediction by case more than metric values, ```neural_texttiling.TextTiling``` returns segment_prediction as well.
 
 
 ## 2. Data Generation:
