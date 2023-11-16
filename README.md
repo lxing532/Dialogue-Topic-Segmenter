@@ -9,11 +9,23 @@ This repository maintains:
 This list of python scripts are together as the source codebase of our paper:
 - For training:
   - __*train.py*__ : contains the main code (Sec 3.2 in the paper) for the training process of the utterance-pair coherence scoring model grounded on BERT (Next Sentence Prediction). 
-  - __*data_utils.py*__ : contains the main code (Sec 3.1 in the paper) for pseudo training data generation, which will be used to train the coherence scoring model.
+  - __*data_utils.py*__ : contains the main code (Sec 3.1 in the paper) for pseudo training data generation, which will be loaded to train the coherence scoring model.
   - __*model_utils.py*__ : contains the class of coherence scoring model.
 - For evaluation:
   - __*segment.py*__ : contains the main code to conduct evluation procedure based on the TextTiling segmentation framework.
   - __*neural_texttiling.py*__ : contains the detailed implementation of TextTiling with different settings of text encoder (e.g., Bi-encoder, cross-encoder, coherence scoring etc)
+
+### Training Steps:
+> 0. Instaill env requirements
+```
+pip install -r requirements.txt
+```
+> 1. Download DailyDial from this [link](http://yanran.li/dailydialog) and add the following three files to __*./data/train/dailydialog/*__ :
+``` diff
++ dialogues_text.txt
++ dialogues_topic.txt
++ dialogue_act.txt
+```
 
 ## 2. Data Generation:
 Once the source of training data is ready, we run *data_process.py* to generate the postive and negative utterance pair samples for the training of BERT-based coherence scoring model. Please note that the code will generate three files:
