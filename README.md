@@ -12,7 +12,7 @@ This list of python scripts are together as the source codebase of our paper:
   - __*data_utils.py*__ : contains the main code (Sec 3.1 in the paper) for pseudo training data generation, which will be loaded to train the coherence scoring model.
   - __*model_utils.py*__ : contains the class of coherence scoring model.
 - For evaluation:
-  - __*segment.py*__ : contains the main code to conduct evluation procedure based on the TextTiling segmentation framework.
+  - __*segment.py*__ : contains the main code to conduct evaluation procedure based on the TextTiling segmentation framework.
   - __*neural_texttiling.py*__ : contains the detailed implementation of TextTiling with different settings of text encoder (e.g., Bi-encoder, cross-encoder, coherence scoring etc)
 
 ### 👉🏼 Training/Testing Steps:
@@ -81,7 +81,7 @@ This list of python scripts are together as the source codebase of our paper:
 <br/>
 
 ## PART II (Continously Update):
-We also maintain a data hub for dialogue topic segmentation with corpora cleaned to a standardized format compatible with our evaluation code. We believe maintaining this data hub will also save efforts of other ongoing research as there is no need to write data loading code for each individual corpus anymore. 
+We also maintain a [data hub](https://github.com/lxing532/Dialogue-Topic-Segmenter/tree/main/data) for dialogue topic segmentation with corpora cleaned to a standardized format compatible with our evaluation code. We believe maintaining this data hub will also save efforts of other ongoing research as there is no need to write data loading code for each individual corpus anymore. 
 
 The current list of dataset for dialogue topic segmentation covers:
 >  * DialSeg_711
