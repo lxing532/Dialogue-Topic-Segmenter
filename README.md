@@ -33,7 +33,8 @@ This list of python scripts are together as the source codebase of our paper:
 >💡Notes:
 >  * The current data loading/generation code (data_utils.py) is specifically implemented for DailyDialog, please adjust it accordingly to load your datasets if need.
 >  * The training code only support bert-based language model supporting mode of Next Sentence Prediction, otherwise it will run into errors (e.g., loading roberta, sbert as text encoder).
->  * Checkpoint of each epoch will be saved to your specified directory.
+>  * Checkpoint of each 1000 steps will be saved to your specified directory.
+>  * Training log can be found in training_log.txt.
 
 **3. For evaluation, you can run command like:**
   ```
