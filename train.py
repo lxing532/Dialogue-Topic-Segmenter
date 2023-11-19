@@ -56,10 +56,11 @@ def validation_metric(sample_list):
 def train(model, train_dataloader, val_dataloader, optimizer, epochs, margin, device, checkpoints_path):
     # Total number of training steps is number of batches * number of epochs.
     total_steps = len(train_dataloader) * epochs
+    current_step = 0
     # Create the learning rate scheduler.
     scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps = 0, num_training_steps = total_steps)
 
-    log_filename = 'training_log_dse_easy.txt' # log file to record progress
+    log_filename = 'training_log.txt' # log file to record progress
     with open(log_filename, 'w') as log_file:
         for epoch_i in range(0, epochs):
             print("")
@@ -77,28 +78,30 @@ def train(model, train_dataloader, val_dataloader, optimizer, epochs, margin, de
                 loss = marginal_ranking_loss(output, margin) # loss computing
                 total_loss += loss.item()
 
-                if step % 1000 == 0 and not step == 0: # log every 1000 steps
-                    progress_log = f'{step} steps done.... {total_loss / step}\n'
-                    print(progress_log, end='')
-                    log_file.write(progress_log); log_file.flush()
-
                 loss.backward()  # back-propagte
                 torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
                 optimizer.step()
                 scheduler.step()
 
+                if step % 1000 == 0 and not step == 0: # log every 1000 steps
+                    progress_log = f'{step} steps done.... {total_loss / step}\n'
+                    print(progress_log, end='')
+                    log_file.write(progress_log); log_file.flush()
+
+                    val_res = validation(model, val_dataloader, device)  # apply model from this step to the validation set
+                    val_log = f'Validation Results - Step {step}: {val_res}\n'
+                    print(val_log)
+                    log_file.write(val_log); log_file.flush()
+
+                    # Save model
+                    torch.save(model.state_dict(), checkpoints_path+'/cpt_'+str(current_step)+'.pth')  # save the model checkpoint for this step.
+                    
+                current_step += 1
+                
             avg_train_loss = total_loss / len(train_dataloader)  # mean loss for the epoch
             epoch_log = f'=========== The loss for epoch {epoch_i} is: {avg_train_loss}\n'
             print(epoch_log)
             log_file.write(epoch_log); log_file.flush()
-
-            val_res = validation(model, val_dataloader, device)  # apply model from this epoch to the validation set
-            val_log = f'Validation Results - Epoch {epoch_i}: {val_res}\n'
-            print(val_log)
-            log_file.write(val_log); log_file.flush()
-
-            # Save model
-            torch.save(model.state_dict(), checkpoints_path+'/cpt_'+str(epoch_i)+'.pth')  # save the model checkpoint for this epoch.
 
 
 def validation(model, val_dataloader, device):
