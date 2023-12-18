@@ -15,9 +15,9 @@ warnings.filterwarnings('ignore')
 def parse_args():
     parser = argparse.ArgumentParser(usage='python train.py -t path/to/dataset -e aws-ai/dse-bert-base -s path/to/checkpoints -m 1')
     parser.add_argument('-t', '--dataset', help='path of dataset for pseudo data generation', default='./data/train/dailydialog')
-    parser.add_argument('-r', '--epochs', help='number of training epochs', default=10)
-    parser.add_argument('-b', '--batch_size', help='batch size', default=24)
-    parser.add_argument('-m', '--margin', help='hyper-parameter of marginal ranking loss', default=1)
+    parser.add_argument('-r', '--epochs', type=int, help='number of training epochs', default=10)
+    parser.add_argument('-b', '--batch_size', type=int, help='batch size', default=24)
+    parser.add_argument('-m', '--margin', type=float, help='hyper-parameter of marginal ranking loss',  default=1)
     parser.add_argument('-e', '--text_encoder', help='text encoder for utterances', default='aws-ai/dse-bert-base')
     parser.add_argument('-s', '--checkpoints_path', help='path to save checkpoints', default='./checkpoints/')
     args = parser.parse_args()
@@ -117,12 +117,12 @@ def validation(model, val_dataloader, device):
     
 
 def main():
-    os.environ['CUDA_VISIBLE_DEVICES'] = '1'  # can delete if not using it.
+    # os.environ['CUDA_VISIBLE_DEVICES'] = '1'  # can delete if not using it.
     # Load settings
     args = parse_args()
     data = args.dataset
     epochs = args.epochs
-    batch = args.batch_size
+    batch_size = args.batch_size
     margin = args.margin
     checkpoints_path = args.checkpoints_path
     
@@ -136,9 +136,10 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(args.text_encoder)
 
     # Create dataset and dataloader
-    text_path = data + '/dialogues_text.txt'
-    topic_path = data + '/dialogues_topic.txt'
-    act_path = data + '/dialogues_act.txt'
+    text_path = os.path.join(data, 'dialogues_text.txt')
+    topic_path = os.path.join(data, 'dialogues_topic.txt')
+    act_path = os.path.join(data, 'dialogues_act.txt')
+
     full_dataset = UtteranceDataset(text_path, topic_path, act_path, tokenizer)
     # Determine sizes for train and validation sets
     val_size = int(0.1 * len(full_dataset))  # for 10% validation set
@@ -150,7 +151,7 @@ def main():
     val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, collate_fn=collate_fn)
 
     # Utterance-pair coherence scoring model
-    model = CoherenceNet(model)
+    model = CoherenceNet(model, device)
     model.to(device)
     optimizer = AdamW(model.parameters(), lr = 2e-5, eps = 1e-8)
 

@@ -1,0 +1,10 @@
+/data/train/*
+!/data/train/README.md
+
+/checkpoints/*
+!/checkpoints/PLACEHOLDER.md
+
+__pycache__
+training_log.txt
+
+.DS_Store
