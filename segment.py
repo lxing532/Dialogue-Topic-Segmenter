@@ -68,7 +68,7 @@ if __name__ == "__main__":
     if mode == 'SC': text_encoder = AutoModel.from_pretrained(text_encoder_name).to(device)     # Sequence Classification
     if mode == 'NSP': text_encoder = AutoModelForNextSentencePrediction.from_pretrained(text_encoder_name).to(device)    # Next Sentence Prediction
     if mode == 'CM': 
-        text_encoder = CoherenceNet(AutoModel.from_pretrained('aws-ai/dse-bert-base')) 
+        text_encoder = CoherenceNet(AutoModel.from_pretrained('aws-ai/dse-bert-base'), device) 
         checkpoint = torch.load(text_encoder_name)
         text_encoder.load_state_dict(checkpoint)
         text_encoder.to(device)

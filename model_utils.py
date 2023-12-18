@@ -6,7 +6,7 @@ import torch.nn as nn
 
 
 class CoherenceNet(torch.nn.Module):
-    def __init__(self, bert_model):
+    def __init__(self, bert_model, device):
         super(CoherenceNet, self).__init__()
         self.bert = bert_model
         self.coherence_decoder = nn.Sequential(
@@ -15,15 +15,16 @@ class CoherenceNet(torch.nn.Module):
                                     nn.Dropout(p=0.1),
                                     nn.Linear(768, 2)
                                 )
+        self.device = device
 
     def forward(self, batch):
 
         output = []
 
         for idx, sample in enumerate(batch):
-            pos_output = self.bert(**sample[0].to('cuda'))
-            neg1_output = self.bert(**sample[1].to('cuda'))
-            neg2_output = self.bert(**sample[2].to('cuda'))
+            pos_output = self.bert(**sample[0].to(self.device))
+            neg1_output = self.bert(**sample[1].to(self.device))
+            neg2_output = self.bert(**sample[2].to(self.device))
 
             pos_output = pos_output.last_hidden_state[:, 0, :]
             neg1_output = neg1_output.last_hidden_state[:, 0, :]
