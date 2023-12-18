@@ -138,7 +138,7 @@ def main():
     # Create dataset and dataloader
     text_path = os.path.join(data, 'dialogues_text.txt')
     topic_path = os.path.join(data, 'dialogues_topic.txt')
-    act_path = os.path.join(data + 'dialogues_act.txt')
+    act_path = os.path.join(data, 'dialogues_act.txt')
 
     full_dataset = UtteranceDataset(text_path, topic_path, act_path, tokenizer)
     # Determine sizes for train and validation sets
