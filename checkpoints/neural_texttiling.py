@@ -2,6 +2,7 @@ import segeval
 from sklearn.metrics import f1_score
 import torch
 import numpy as np
+from sentence_transformers import SentenceTransformer
 
 
 def similarity_computing(texts, tokenizer, text_encoder, mode, device):
